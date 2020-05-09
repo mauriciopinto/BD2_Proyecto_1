@@ -1,2 +1,6 @@
 /CMakeLists.txt
 .idea/workspace.xml
+/cmake-build-debug/
+.idea/BD2_Proyecto_1.iml
+.idea/misc.xml
+cmake-build-debug/CMakeFiles/clion-log.txt
