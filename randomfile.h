@@ -1,4 +1,24 @@
 #ifndef BD2_PROYECTO_1_RANDOMFILE_H
 #define BD2_PROYECTO_1_RANDOMFILE_H
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif //BD2_PROYECTO_1_RANDOMFILE_H

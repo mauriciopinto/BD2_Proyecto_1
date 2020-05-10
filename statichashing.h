@@ -1,4 +1,23 @@
 #ifndef BD2_PROYECTO_1_STATICHASHING_H
 #define BD2_PROYECTO_1_STATICHASHING_H
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif //BD2_PROYECTO_1_STATICHASHING_H
