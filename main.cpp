@@ -4,5 +4,8 @@
 using namespace std;
 
 int main(){
-    return 0;
+    string prueba="Select * from tabla1 where h = jonathan";
+    vector<string> test=read(prueba);
+    printvector(test);
+    determinefunction(test);
 }

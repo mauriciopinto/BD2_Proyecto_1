@@ -6,18 +6,8 @@
 #include "string"
 using namespace std;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+void printvector(vector<string>);
+vector<string> read(string);
+void determinefunction(vector<string>);
 
 #endif //BD2_PROYECTO_1_PARSER_H
