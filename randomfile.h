@@ -1,7 +1,5 @@
-//#ifndef BD2_PROYECTO_1_RANDOMFILE_H
-//#define BD2_PROYECTO_1_RANDOMFILE_H
-
-//#endif //BD2_PROYECTO_1_RANDOMFILE_H
+#ifndef BD2_PROYECTO_1_RANDOMFILE_H
+#define BD2_PROYECTO_1_RANDOMFILE_H
 
 #include <iostream>
 #include <fstream>
@@ -57,3 +55,4 @@ public:
 		store_index ();
 	}
 };
+#endif //BD2_PROYECTO_1_RANDOMFILE_H

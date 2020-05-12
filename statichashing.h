@@ -1,7 +1,5 @@
-//#ifndef BD2_PROYECTO_1_STATICHASHING_H
-//#define BD2_PROYECTO_1_STATICHASHING_H
-
-//#endif //BD2_PROYECTO_1_STATICHASHING_H
+#ifndef BD2_PROYECTO_1_STATICHASHING_H
+#define BD2_PROYECTO_1_STATICHASHING_H
 
 #include <iostream>
 #include <map>
@@ -77,3 +75,4 @@ public:
 		store_index ();
 	}
 };
+#endif //BD2_PROYECTO_1_STATICHASHING_H
