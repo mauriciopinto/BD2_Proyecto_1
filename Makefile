@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-g
+CFLAGS=-g -pthread
 ALLOBJ=main.o parser.o statichashing.o transactions.o ui.o randomfile.o record.o
 DEPS=parser.h statichashing.h transactions.h ui.h randomfile.h record.h
 DATAFILES=hash_data.bin hash_index.bin random_data.bin random_index.bin

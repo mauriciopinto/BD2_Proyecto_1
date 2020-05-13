@@ -1,5 +1,6 @@
 #include <iostream>
 #include "randomfile.h"
+#include "statichashing.h"
 
 int main(){
 	/*const char *filename = "hash_data.bin";
