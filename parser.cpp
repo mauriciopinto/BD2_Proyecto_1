@@ -67,6 +67,7 @@ void determinefunction(vector<string> function){
             if(checkindex(function[3])==true){
                 random_file temp((function[3]+".bin").c_str(),(function[3]+"_index.bin").c_str());
                 record a=temp.search_record(stoi(function[7]));
+
                 if(function[1]=="*"){
                     cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
                 }
@@ -80,11 +81,27 @@ void determinefunction(vector<string> function){
                 else{
                     cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
                 }
+
             }
             else{
                 hash_file temp((function[3]+".bin").c_str(),(function[3]+"_index.bin").c_str(),6,6);
                 record a=temp.search_record(stoi(function[7]));
                 cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
+
+                if(function[1]=="*"){
+                    cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
+                }
+                else if(function[1]=="KEY"){
+                    cout<<function[1]<<": "<<a.key<<endl;
+                }
+
+                else if(function[1]=="VALUE"){
+                    cout<<function[1]<<": "<<a.value<<endl;
+                }
+                else{
+                    cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
+                }
+
             }
         }
         else{
