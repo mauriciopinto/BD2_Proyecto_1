@@ -16,7 +16,7 @@ bool checkindex(const string& tablename){
     char buffer[sizeof(int)];
     file.read(buffer,sizeof(int));
     cout<<"Numero Header1: "<<buffer<<endl;
-    int lectura=atoi(buffer);
+    int lectura = *((int *) buffer);
     cout<<"Numero Header: "<<lectura<<endl;
     //1 es random
     if(lectura==1){

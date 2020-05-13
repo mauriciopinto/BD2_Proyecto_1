@@ -45,21 +45,25 @@ list<Pair> sort_dictionary (list<Pair> dictionary) {
 
 record random_search_record (int key, const char *data_filename, list<Pair> dictionary) {
 	list<Pair>::iterator it;
-        int n = dictionary.size ();
-        if (n % 2 == 0) {
+        int n = dictionary.size () - 1;
+        if ((n+1) % 2 == 0) {
+		n = (n+1)/2 -1;
         	it = dictionary.begin ();
                 advance (it, n);
-                while (n > 1) {
-                	if (key == it->key)
+                while (true) {
+                	int prev_n = n;
+			if (key == it->key)
                         	return random_read_record (data_filename, it->position);
                         if (key > it->key) {
-                        	n += n / 2;
+                        	n += (n+1) / 2;
                                 advance (it, n);
                         }
                         else {
-                        	n -= n / 2;
+                        	n -= (n+1) / 2;
                         	it = prev (it, n);
                         }
+			if (prev_n == n || n > dictionary.size () - 1)
+				break;
                 }
 	}
         else {
@@ -94,7 +98,9 @@ list<Pair> random_add_record (record *r, const char *data_filename, list<Pair> d
 void random_store_index (const char *index_filename, list<Pair> dictionary) {
 	ofstream index;
         index.open (index_filename, ios::binary);
-
+	index.seekp (0);
+	int dict_size = dictionary.size ();
+	index.write ((char *) &dict_size, sizeof (int));
         for (auto it = dictionary.begin (); it != dictionary.end (); it++) {
         	index.write ((char *) &(*it), sizeof (Pair));
         }

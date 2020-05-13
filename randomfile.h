@@ -30,8 +30,11 @@ public:
                 index.open (index_filename, ios::binary);
                 Pair *temp = new Pair;
                 char buffer[sizeof (Pair)];
+		char size_buffer[sizeof (int)];
                 if (index.good ()) {
-                        while (!index.eof ()) {
+			index.read (size_buffer, sizeof (int));
+			int dict_size = *((int *) size_buffer);
+                        for (int i = 0; i < dict_size; i++) {
                                 index.read (buffer, sizeof (Pair));
                                 temp = (Pair *) buffer;
                                 dictionary.push_back (*temp);
