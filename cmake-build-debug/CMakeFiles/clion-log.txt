@@ -1,1 +1,4 @@
-CMakeLists.txt not found in /Users/jonathanprieto/Documents/GitHub/BD2_Proyecto_1 Select CMakeLists.txt file...
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/jonathanprieto/Documents/GitHub/BD2_Proyecto_1
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/jonathanprieto/Documents/GitHub/BD2_Proyecto_1/cmake-build-debug

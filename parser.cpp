@@ -124,8 +124,8 @@ void determinefunction(vector<string> function){
     //INSERT INTO table_name (KEY, VALUE)
     else if(function[0] == "INSERT"){
         cout<<"Esta funcion es para insertar un elemento en la tabla."<<endl;
-        if(checkfileexist(function[3])==true){
-            if(checkindex(function[3])==true){
+        if(checkfileexist(function[2])==true){
+            if(checkindex(function[2])==true){
                 record *a=new record;
                 init_record(a,stoi(function[4]),(function[6]).c_str());
                 random_file temp((function[2]+".bin").c_str(),(function[2]+"_index.bin").c_str());
