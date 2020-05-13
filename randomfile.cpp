@@ -14,7 +14,7 @@ record random_read_record (const char *data_filename, int position) {
 	char buffer[sizeof (record)];
 
 	file.open (data_filename, ios::binary);
-	file.seekg (position * sizeof (record));
+	file.seekg ((position * sizeof (record)) + sizeof (int));
 	file.read (buffer, sizeof (record));
 
 	file.close ();

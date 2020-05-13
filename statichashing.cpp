@@ -24,7 +24,7 @@ record *hash_read_record (int position, const char *filename) {
 	char buffer[sizeof (record)];
 	
 	file.open (filename, ios::binary);
-	file.seekg (position * sizeof(record));
+	file.seekg ((position * sizeof(record)) + sizeof (int));
 	file.read (buffer, sizeof (record));
 	temp = (record *) buffer;
 
@@ -36,7 +36,7 @@ void hash_write_record (record *r, int position, const char *filename) {
 	ofstream file;
 
 	file.open (filename, ios::binary);
-	file.seekp (position * sizeof (record));
+	file.seekp ((position * sizeof (record)) + sizeof (int));
 	file.write ((char *) r, sizeof (record));
 
 	file.flush ();

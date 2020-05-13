@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <list>
-#include "statichashing.h"
+#include "record.h"
 
 using namespace std;
 
