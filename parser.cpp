@@ -102,17 +102,22 @@ void determinefunction(vector<string> function){
         int choice;
         //CREATE TEST INDEX RANDOM (O HASH)
         if(function[3]=="RANDOM"){
+            cout<<"Creating Random file"<<endl;
             choice=1;
-            file.write((char*)&choice,0);
+            file.write((char*)&choice,sizeof(int));
+            file.flush();
         }
         else if(function[3]=="HASH"){
+            cout<<"Creating Hash file"<<endl;
             choice=0;
-            file.write((char*)&choice,0);
+            file.write((char*)&choice,sizeof(int));
+            file.flush();
         }
         else{
             cout<<"El indice que ingreso no esta disponible en este Gestor!"<<endl;
         }
-
+    cout<<"Se creo la tabla: "<<function[1]<<"."<<endl;
+        file.close();
     }
 
     //tabla y el valor de cada columna (metiendo los valores en el objeto record)
@@ -132,6 +137,9 @@ void determinefunction(vector<string> function){
                 hash_file temp((function[2]+".bin").c_str(),(function[2]+"_index.bin").c_str(),6,6);
                 temp.add_record(a);
             }
+        }
+        else{
+            cout<<"No existe la tabla: "<<function[3]<<endl;
         }
 
     }
