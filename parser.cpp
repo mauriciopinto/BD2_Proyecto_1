@@ -19,7 +19,9 @@ bool checkindex(string tablename){
     file.seekg(0);
     char buffer[sizeof(int)];
     file.read(buffer,sizeof(int));
+    cout<<"Numero Header1: "<<buffer<<endl;
     int lectura=atoi(buffer);
+    cout<<"Numero Header: "<<lectura<<endl;
     //1 es random
     if(lectura==1){
         return true;
@@ -65,6 +67,7 @@ void determinefunction(vector<string> function){
         cout<<"Esta funcion es un Select."<<endl;
         if(checkfileexist(function[3])==true){
             if(checkindex(function[3])==true){
+                cout<<"Select Random"<<endl;
                 random_file temp((function[3]+".bin").c_str(),(function[3]+"_index.bin").c_str());
                 record a=temp.search_record(stoi(function[7]));
 
@@ -84,6 +87,7 @@ void determinefunction(vector<string> function){
 
             }
             else{
+                cout<<"Select Hash"<<endl;
                 hash_file temp((function[3]+".bin").c_str(),(function[3]+"_index.bin").c_str(),6,6);
                 record a=temp.search_record(stoi(function[7]));
                 cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
