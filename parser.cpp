@@ -88,7 +88,7 @@ void determinefunction(vector<string> function){
             }
         }
         else{
-            cout<<"Esta tabla no existe!"<<endl;
+            cout<<"No existe la tabla: "<<function[3]<<endl;
         }
 
     }
@@ -139,7 +139,7 @@ void determinefunction(vector<string> function){
             }
         }
         else{
-            cout<<"No existe la tabla: "<<function[3]<<endl;
+            cout<<"No existe la tabla: "<<function[2]<<endl;
         }
 
     }
