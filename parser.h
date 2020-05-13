@@ -6,7 +6,7 @@
 #include "string"
 using namespace std;
 
-void printvector(vector<string>);
+void printvector(const vector<string>&);
 vector<string> read(string);
 void determinefunction(vector<string>);
 

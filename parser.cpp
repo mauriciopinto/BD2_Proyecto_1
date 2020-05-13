@@ -3,18 +3,13 @@
 #include "statichashing.h"
 #include <algorithm>
 
-bool checkfileexist(string tablename){
+bool checkfileexist(const string& tablename){
     ifstream file;
     file.open(tablename+".bin", ios::binary);
-    if(file.good()){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return file.good();
 }
 
-bool checkindex(string tablename){
+bool checkindex(const string& tablename){
     ifstream file;
     file.open(tablename+".bin", ios::binary);
     file.seekg(0);
@@ -36,10 +31,10 @@ bool checkindex(string tablename){
     }
 }
 
-void printvector(vector<string> invector){
+void printvector(const vector<string>& invector){
     cout<<"Tamaño vector: "<<invector.size()<<endl;
-    for (int i = 0; i < invector.size(); i++) {
-        cout<<invector[i]<<";";
+    for (auto & i : invector) {
+        cout<<i<<";";
     }
     cout<<endl;
 }
@@ -66,8 +61,8 @@ void determinefunction(vector<string> function){
     //Select * from tabla1 where key = 1
     if(function[0] == "SELECT"){
         cout<<"Esta funcion es un Select."<<endl;
-        if(checkfileexist(function[3])==true){
-            if(checkindex(function[3])==true){
+        if(checkfileexist(function[3])){
+            if(checkindex(function[3])){
                 cout<<"Select Random"<<endl;
                 random_file temp((function[3]+".bin").c_str(),(function[3]+"_index.bin").c_str());
                 record a=temp.search_record(stoi(function[7]));
@@ -91,7 +86,6 @@ void determinefunction(vector<string> function){
                 cout<<"Select Hash"<<endl;
                 hash_file temp((function[3]+".bin").c_str(),(function[3]+"_index.bin").c_str(),6,6);
                 record a=temp.search_record(stoi(function[7]));
-                cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
 
                 if(function[1]=="*"){
                     cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
@@ -146,16 +140,16 @@ void determinefunction(vector<string> function){
     //INSERT INTO table_name (KEY, VALUE)
     else if(function[0] == "INSERT"){
         cout<<"Esta funcion es para insertar un elemento en la tabla."<<endl;
-        if(checkfileexist(function[2])==true){
-            if(checkindex(function[2])==true){
-                record *a=new record;
-                init_record(a,stoi(function[4]),(function[6]).c_str());
+        if(checkfileexist(function[2])){
+            if(checkindex(function[2])){
+                auto *a=new record;
+                init_record(a,stoi(function[4]),function[6]);
                 random_file temp((function[2]+".bin").c_str(),(function[2]+"_index.bin").c_str());
                 temp.add_record(a);
             }
             else{
-                record *a=new record;
-                init_record(a,stoi(function[4]),(function[6]).c_str());
+                auto *a=new record;
+                init_record(a,stoi(function[4]),function[6]);
                 hash_file temp((function[2]+".bin").c_str(),(function[2]+"_index.bin").c_str(),6,6);
                 temp.add_record(a);
             }
