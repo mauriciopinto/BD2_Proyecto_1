@@ -1,6 +1,7 @@
 #include "parser.h"
 #include "randomfile.h"
 #include "statichashing.h"
+#include <algorithm>
 
 bool checkfileexist(string tablename){
     ifstream file;
