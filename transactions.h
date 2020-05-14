@@ -1,7 +1,5 @@
-//#ifndef BD2_PROYECTO_1_TRANSACTIONS_H
-//#define BD2_PROYECTO_1_TRANSACTIONS_H
-
-//#endif //BD2_PROYECTO_1_TRANSACTIONS_H
+#ifndef BD2_PROYECTO_1_TRANSACTIONS_H
+#define BD2_PROYECTO_1_TRANSACTIONS_H
 #include <iostream>
 #include <pthread.h>
 #include <vector>
@@ -21,3 +19,4 @@ struct transaction {
 void init_transaction (transaction *, int, record, operation);
 void *run_transaction (void *);
 void setup_transactions (vector<transaction>, int, vector<record>);
+#endif //BD2_PROYECTO_1_TRANSACTIONS_H

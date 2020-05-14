@@ -113,27 +113,30 @@ void determinefunction(vector<string> function){
     //Generar el ingreso de columnas
     else if(function[0] == "CREATE"){
         cout<<"Esta funcion es para crear una tabla."<<endl;
-        ofstream file;
-        file.open(function[1]+".bin", ios::binary | ios::app);
-        int choice;
-        //CREATE TEST INDEX RANDOM (O HASH)
-        if(function[3]=="RANDOM"){
-            cout<<"Creating Random file"<<endl;
-            choice=1;
-            file.write((char*)&choice,sizeof(int));
-            file.flush();
-        }
-        else if(function[3]=="HASH"){
-            cout<<"Creating Hash file"<<endl;
-            choice=0;
-            file.write((char*)&choice,sizeof(int));
-            file.flush();
+        if(checkfileexist(function[1])) {
+            ofstream file;
+            file.open(function[1] + ".bin", ios::binary | ios::app);
+            int choice;
+            //CREATE TEST INDEX RANDOM (O HASH)
+            if (function[3] == "RANDOM") {
+                cout << "Creating Random file" << endl;
+                choice = 1;
+                file.write((char *) &choice, sizeof(int));
+                file.flush();
+            } else if (function[3] == "HASH") {
+                cout << "Creating Hash file" << endl;
+                choice = 0;
+                file.write((char *) &choice, sizeof(int));
+                file.flush();
+            } else {
+                cout << "El indice que ingreso no esta disponible en este Gestor!" << endl;
+            }
+            cout << "Se creo la tabla: " << function[1] << "." << endl;
+            file.close();
         }
         else{
-            cout<<"El indice que ingreso no esta disponible en este Gestor!"<<endl;
+            cout<<"La tabla: "<<function[1]<<", ya existe!"<<endl;
         }
-    cout<<"Se creo la tabla: "<<function[1]<<"."<<endl;
-        file.close();
     }
 
     //tabla y el valor de cada columna (metiendo los valores en el objeto record)

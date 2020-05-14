@@ -1,4 +1,5 @@
 #include "transactions.h"
+#include "parser.h"
 
 vector<vector<transaction>> split_transactions (vector<transaction>, int);
 
