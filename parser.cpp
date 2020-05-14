@@ -167,3 +167,8 @@ void determinefunction(vector<string> function){
         cout<<"Esta función no esta reconocida por es gestor de base de datos."<<endl;
     }
 }
+
+//Hacer un select de toda la tabla
+//Hacer transacciones concurrentes
+//Hacer experimentacion
+//Integrar UI
