@@ -49,6 +49,8 @@ void MainWindow::on_pushButton_clicked()
        }
 
     }
+       //para tener en la pantalla las operaciones
+       ui->logg->insertHtml("load table");
        file.close();
 
 }
