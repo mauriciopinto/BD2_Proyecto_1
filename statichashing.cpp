@@ -14,6 +14,7 @@ void init_bucket (bucket *b, int position, int bucket_size, int count) {
 
 void write_bucket (bucket *b, const char *filename) {
 	record *temp = new record;
+	init_record (temp, -1, "empty record");
 	for (int i = 0; i < b->bucket_size; i++) 
 		hash_write_record (temp, b->position + i, filename);
 }
@@ -120,4 +121,22 @@ void print_hash_table (map<int, bucket *> *hash_table) {
 	map<int, bucket *>::iterator it;
 	for (it = hash_table->begin (); it != hash_table->end (); it++)
 		cout << it->first << " " << it->second->position << " " << it->second->count << endl;
+}
+
+vector<record> hash_get_all_records (const char *data_filename) {
+	ifstream file;
+	file.open (data_filename, ios::binary);
+	char buffer[sizeof (record)];
+	record *temp;
+	vector<record> all_records;
+	
+	file.seekg (sizeof(int));
+	file.read (buffer, sizeof (record));
+	while (!file.eof ()) {
+		temp = (record *) buffer;
+		if (temp->key > 0)
+			all_records.push_back (*temp);
+		file.read (buffer, sizeof (record));
+	}
+	return all_records;
 }
