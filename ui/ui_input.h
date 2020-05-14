@@ -1,6 +1,0 @@
-#ifndef BD2_PROYECTO_1_UI_INPUT_H
-#define BD2_PROYECTO_1_UI_INPUT_H
-
-
-
-#endif //BD2_PROYECTO_1_UI_INPUT_H
