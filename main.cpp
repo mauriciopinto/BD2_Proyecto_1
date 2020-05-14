@@ -18,7 +18,7 @@ int main(){
 
     */
 #include "ui/mainwindow.h"
-#include "input.h"
+#include "ui/input.h"
 #include <QApplication>
 
     int main(int argc, char *argv[])
