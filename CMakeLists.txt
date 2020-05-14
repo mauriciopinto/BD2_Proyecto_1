@@ -11,5 +11,5 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-add_executable(BD2_PROYECTO_1 parser.cpp parser.h main.cpp statichashing.cpp statichashing.h randomfile.cpp randomfile.h record.cpp record.h transactions.cpp transactions.h ui/input.cpp ui/input.h ui/ui_dialog.h ui/mainwindow.h ui/mainwindow.cpp ui/mainwindow.ui ui/ui_input.ui ui/input.h ui/dialog.ui ui/input.ui)
+add_executable(BD2_PROYECTO_1 parser.cpp parser.h main.cpp statichashing.cpp statichashing.h randomfile.cpp randomfile.h record.cpp record.h transactions.cpp transactions.h ui/input.cpp ui/input.h ui/ui_dialog.h ui/mainwindow.h ui/mainwindow.cpp ui/mainwindow.ui ui/ui_input.ui ui/input.h ui/dialog.ui ui/input.ui ui/ui_input.h ui/ui_mainwindow.h)
 target_link_libraries(BD2_PROYECTO_1 Qt5::Widgets)
