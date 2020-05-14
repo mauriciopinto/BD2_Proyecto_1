@@ -1,5 +1,6 @@
 #include "input.h"
 #include "ui_input.h"
+#include "parser.h"
 #include <QtDebug>
 
 input::input(QWidget *parent) :
@@ -26,4 +27,10 @@ void input::on_pushButton_clicked()
     std::string utf8_text = str.toUtf8().constData();
     qDebug() << str;
 
+    //string prueba="Create Test2 Index hash";
+    //string prueba="Insert Into Test2 ( 1 , Mauricio )";
+    //string prueba="Select * from TEST where key = 1";
+    vector<string> test=read(str.toStdString());
+    printvector(test);
+    determinefunction(test);
 }
