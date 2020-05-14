@@ -7,8 +7,8 @@ using namespace std;
 
 
 int main(){
-    string prueba="Select * from TEST where key = 0";
-    //string prueba="Create Test Index random";
+    string prueba="Select * from TEST";
+    //string prueba="Create Test Index hash";
     //string prueba="Insert Into Test ( 1 , Mauricio )";
     vector<string> test=read(prueba);
     printvector(test);

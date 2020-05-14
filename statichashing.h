@@ -23,6 +23,7 @@ record hash_search_record (int, map<int, bucket *> *, int, const char *);
 void hash_store_index (const char *, map<int, bucket *> *);
 void write_bucket (bucket *, const char *);
 void init_bucket (bucket *, int, int, int);
+vector<record> hash_get_all_records (const char *);
 
 class hash_file {
 private:
@@ -72,6 +73,10 @@ public:
 
 	void store_index () {
 		hash_store_index (hash_table_filename, &hash_table);
+	}
+
+	vector<record> get_all_records () {
+		return hash_get_all_records (data_filename);
 	}
 
 	~hash_file () {

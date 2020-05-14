@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <vector>
 #include "record.h"
 
 using namespace std;
@@ -17,6 +18,7 @@ void init_pair (Pair *, int, int);
 record random_search_record (int, const char *, list<Pair>);
 list<Pair> random_add_record (record *, const char *, list<Pair>);
 void random_store_index (const char *, list<Pair>);
+vector<record> random_get_all_records (const char *);
 
 class random_file {
 private:
@@ -52,6 +54,10 @@ public:
 
 	void store_index () {
 		random_store_index (index_filename, dictionary);
+	}
+
+	vector<record> get_all_records () {
+		return random_get_all_records (data_filename);
 	}
 
 	~random_file () {

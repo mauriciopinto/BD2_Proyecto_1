@@ -108,3 +108,20 @@ void random_store_index (const char *index_filename, list<Pair> dictionary) {
 	index.flush ();
 	index.close ();
 }
+
+vector<record> random_get_all_records (const char *data_filename) {
+        ifstream file;
+        file.open (data_filename, ios::binary);
+        char buffer[sizeof (record)];
+        record *temp;
+        vector<record> all_records;
+
+        file.seekg (sizeof(int));
+        file.read (buffer, sizeof (record));
+        while (!file.eof ()) {
+                temp = (record *) buffer;
+                all_records.push_back (*temp);
+                file.read (buffer, sizeof (record));
+        }
+        return all_records;
+}
