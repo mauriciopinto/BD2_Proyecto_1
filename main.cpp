@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include "parser.h"
 #include "randomfile.h"
@@ -15,8 +16,8 @@ int main(){
     determinefunction(test);
 }
 
-/*
-#include "mainwindow.h"
+    */
+#include "ui/mainwindow.h"
 #include "input.h"
 #include <QApplication>
 
@@ -30,4 +31,4 @@ int main(){
         x.show();
         return a.exec();
     }
-    */
+
