@@ -1,7 +1,4 @@
 #include <iostream>
-#include "parser.h"
-#include "randomfile.h"
-#include "statichashing.h"
 #include "ui/mainwindow.h"
 #include "ui/input.h"
 #include <QApplication>
