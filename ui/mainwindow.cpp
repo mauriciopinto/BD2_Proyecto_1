@@ -8,6 +8,7 @@
 #include <QTableWidget>
 #include <QTableWidgetItem>
 #include <QMessageBox>
+#include <QtDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -26,21 +27,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-
-
        QString data;
-       QFile file( "C:\\Users\\Usuario\\Documents\\nuevointento\\test.csv");
+       QFile file( "/Users/jonathanprieto/Documents/GitHub/BD2_Proyecto_1/cmake-build-debug/outputcsv.csv");
        QStringList listA;
        int row = 0;
        if (file.open(QIODevice::ReadOnly)){
            while (!file.atEnd()){
            QString line = file.readLine();
-           listA = line.split(";");
+           listA = line.split(",");
            ui->tableWidget->setColumnCount(listA.size());
            ui->tableWidget->insertRow(row);
 
            for (int x = 0; x < listA.size(); x++){
-
+               qDebug()<<listA.at(x);
                QTableWidgetItem *test = new QTableWidgetItem(listA.at(x));
                ui->tableWidget->setItem(row, x, test);
 

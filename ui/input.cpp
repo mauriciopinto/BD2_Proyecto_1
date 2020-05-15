@@ -28,7 +28,7 @@ void input::on_pushButton_clicked()
     qDebug() << str;
 
     //string prueba="Create Test2 Index hash";
-    //string prueba="Insert Into Test2 ( 1 , Mauricio )";
+    //string prueba="Insert Into Test2 ( 2 , Jonathan )";
     //string prueba="Select * from TEST where key = 1";
     vector<string> test=read(str.toStdString());
     printvector(test);

@@ -2,6 +2,7 @@
 #include "randomfile.h"
 #include "statichashing.h"
 #include <algorithm>
+#include "ui/mainwindow.h"
 
 bool checkfileexist(const string& tablename){
     ifstream file;
@@ -69,13 +70,69 @@ void determinefunction(vector<string> function){
 			record a=temp.search_record(stoi(function[7]));
 			if(function[1]=="*"){
                			cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
+
+               			ofstream fileoutput;
+                        fileoutput.open("outputcsv.csv", ios::trunc);
+                        fileoutput.flush();
+                        fileoutput.close();
+                        fileoutput.open("outputcsv.csv", ios::app);
+
+                        fileoutput<<("Key:");
+                        fileoutput<<(",");
+                        fileoutput<<("Value:");
+                        fileoutput<<("\n");
+
+                        fileoutput<<(a.key);
+                        fileoutput<<(",");
+                        fileoutput<<((char *) &a.value);
+                        fileoutput<<("\n");
+
+                        fileoutput.flush();
+                        fileoutput.close();
+
                 	}
                 	else if(function[1]=="KEY"){
                     		cout<<function[1]<<": "<<a.key<<endl;
+
+                            ofstream fileoutput;
+                            fileoutput.open("outputcsv.csv", ios::trunc);
+
+                            fileoutput.flush();
+                            fileoutput.close();
+
+                            fileoutput.open("outputcsv.csv", ios::app);
+
+                            fileoutput<<("Key:");
+                            fileoutput<<("\n");
+
+                            fileoutput<<(a.key);
+                            fileoutput<<("\n");
+
+                            fileoutput.flush();
+                            fileoutput.close();
+
                 	}
 
                 	else if(function[1]=="VALUE"){
                     		cout<<function[1]<<": "<<a.value<<endl;
+
+                            ofstream fileoutput;
+                            fileoutput.open("outputcsv.csv", ios::trunc);
+
+                            fileoutput.flush();
+                            fileoutput.close();
+
+                            fileoutput.open("outputcsv.csv", ios::app);
+
+                            fileoutput<<("Value:");
+                            fileoutput<<("\n");
+
+                            fileoutput<<(a.value);
+                            fileoutput<<("\n");
+
+                            fileoutput.flush();
+                            fileoutput.close();
+
                 	}
                 	else{
         			cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
@@ -85,8 +142,31 @@ void determinefunction(vector<string> function){
 		else if (function.size () == 4) {
 			cout << "Selecting all records" << endl;
 			vector<record> all= temp.get_all_records ();
-			for (int i = 0; i < all.size (); i++)
-				cout << all[i].key << " " << all[i].value << endl;
+
+			ofstream fileoutput;
+			fileoutput.open("outputcsv.csv", ios::trunc);
+
+			fileoutput.flush();
+			fileoutput.close();
+
+			fileoutput.open("outputcsv.csv", ios::app);
+
+			fileoutput<<("Key:");
+			fileoutput<<(",");
+			fileoutput<<("Value:");
+			fileoutput<<("\n");
+
+			for (int i = 0; i < all.size (); i++){
+                cout << all[i].key << " " << all[i].value << endl;
+                fileoutput<<(all[i].key);
+                fileoutput<<(",");
+                fileoutput<<((char *) &all[i].value);
+                fileoutput<<("\n");
+			}
+
+			fileoutput.flush();
+			fileoutput.close();
+
 			return; 
 		}
 
@@ -99,13 +179,71 @@ void determinefunction(vector<string> function){
 
                 	if(function[1]=="*"){
                     		cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
+
+                    		ofstream fileoutput;
+                    		fileoutput.open("outputcsv.csv", ios::trunc);
+
+                    		fileoutput.flush();
+                            fileoutput.close();
+
+                            fileoutput.open("outputcsv.csv", ios::app);
+
+                            fileoutput<<("Key:");
+                            fileoutput<<(",");
+                            fileoutput<<("Value:");
+                            fileoutput<<("\n");
+
+                            fileoutput<<(a.key);
+                            fileoutput<<(",");
+                            fileoutput<<((char *) &a.value);
+                            fileoutput<<("\n");
+
+                            fileoutput.flush();
+                            fileoutput.close();
+
                 		}
                 	else if(function[1]=="KEY"){
                     		cout<<function[1]<<": "<<a.key<<endl;
+
+                            ofstream fileoutput;
+                            fileoutput.open("outputcsv.csv", ios::trunc);
+
+                            fileoutput.flush();
+                            fileoutput.close();
+
+                            fileoutput.open("outputcsv.csv", ios::app);
+
+                            fileoutput<<("Key:");
+                            fileoutput<<("\n");
+
+                            fileoutput<<(a.key);
+                            fileoutput<<("\n");
+
+                            fileoutput.flush();
+                            fileoutput.close();
+
                 	}
 
                 	else if(function[1]=="VALUE"){
                 		cout<<function[1]<<": "<<a.value<<endl;
+
+                        ofstream fileoutput;
+                        fileoutput.open("outputcsv.csv", ios::trunc);
+
+                        fileoutput.flush();
+                        fileoutput.close();
+
+                        fileoutput.open("outputcsv.csv", ios::app);
+
+                        fileoutput<<("Value:");
+                        fileoutput<<("\n");
+
+                        fileoutput<<(a.value);
+                        fileoutput<<("\n");
+
+                        fileoutput.flush();
+                        fileoutput.close();
+
                 	}
                 	else{
                     		cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
@@ -115,8 +253,30 @@ void determinefunction(vector<string> function){
 		else if (function.size () == 4) {
 			cout << "Selecting all records" << endl;
                         vector<record> all= temp.get_all_records ();
-                        for (int i = 0; i < all.size (); i++)
-                                cout << all[i].key << " " << all[i].value << endl;
+
+                        ofstream fileoutput;
+                        fileoutput.open("outputcsv.csv", ios::trunc);
+
+                        fileoutput.flush();
+                        fileoutput.close();
+
+                        fileoutput.open("outputcsv.csv", ios::app);
+
+                        fileoutput<<("Key:");
+                        fileoutput<<(",");
+                        fileoutput<<("Value:");
+                        fileoutput<<("\n");
+
+                        for (int i = 0; i < all.size (); i++){
+                            cout << all[i].key << " " << all[i].value << endl;
+                            fileoutput<<(all[i].key);
+                            fileoutput<<(",");
+                            fileoutput<<((char *) &all[i].value);
+                            fileoutput<<("\n");
+                        }
+
+                        fileoutput.flush();
+                        fileoutput.close();
                         return;
 	    	}
             }
