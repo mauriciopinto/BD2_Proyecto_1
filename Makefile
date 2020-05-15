@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-g -pthread
-ALLOBJ=main.o parser.o statichashing.o transactions.o ui.o randomfile.o record.o
-DEPS=parser.h statichashing.h transactions.h ui.h randomfile.h record.h
+ALLOBJ=main.o parser.o statichashing.o transactions.o randomfile.o record.o
+DEPS=parser.h statichashing.h transactions.h randomfile.h record.h
 
 %.o: %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)

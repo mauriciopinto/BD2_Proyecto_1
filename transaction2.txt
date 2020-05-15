@@ -1,0 +1,2 @@
+insert into test ( 2 , jonathan )
+insert into test ( 3 , francesco )
