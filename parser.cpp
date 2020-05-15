@@ -2,7 +2,6 @@
 #include "randomfile.h"
 #include "statichashing.h"
 #include <algorithm>
-#include "ui/mainwindow.h"
 
 bool checkfileexist(const string& tablename){
     ifstream file;
@@ -71,8 +70,22 @@ void determinefunction(vector<string> function){
 			if(function[1]=="*"){
                			cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
                			string temp="La key: "+to_string(a.key)+", tiene un value de: "+a.value+".";
-               			MainWindow temp2;
-               			temp2.printmessage(temp);
+
+               			ofstream filelog;
+               			filelog.open("logfile.txt", ios::trunc);
+               			filelog.flush();
+               			filelog.close();
+               			filelog.open("logfile.txt", ios::app);
+
+               			filelog<<(temp);
+
+               			filelog.flush();
+               			filelog.close();
+
+                        //MainWindow a1,b1;
+                        //QObject::connect(&a1, &MainWindow::printmessage, &b1, &MainWindow::setValue);
+                        //a1.setValue(temp);
+                        //b1.setValue(temp);
 
                			ofstream fileoutput;
                         fileoutput.open("outputcsv.csv", ios::trunc);
@@ -184,8 +197,7 @@ void determinefunction(vector<string> function){
                     		cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
                             string temp="La key: "+to_string(a.key)+", tiene un value de: "+a.value+".";
 
-
-                    		ofstream fileoutput;
+                            ofstream fileoutput;
                     		fileoutput.open("outputcsv.csv", ios::trunc);
 
                     		fileoutput.flush();

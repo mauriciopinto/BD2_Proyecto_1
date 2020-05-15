@@ -15,7 +15,7 @@ public:
     explicit input(QWidget *parent = nullptr);
     ~input();
 
-private slots:
+public slots:
     void on_lineEdit_editingFinished();
 
     void on_pushButton_clicked();
