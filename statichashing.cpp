@@ -10,7 +10,6 @@ void init_bucket (bucket *b, int bucket_size, int count) {
 		b->position[i] = -1;
 	b->bucket_size = bucket_size;
 	b->count = count;
-	b->overflow = nullptr;
 	b->is_null = false;
 }
 
@@ -58,8 +57,15 @@ record hash_find_record (int key, bucket *b, const char *filename) {
 		if (key == temp->key)
 			return *temp;
 	}
-	if (b->count >= b->bucket_size)
-		hash_find_record (key, b->overflow, filename);
+	if (b->overflow_count > 0) {
+		for (int i = 0; i < b->overflow_count; i++) {
+			file.seekg (b->overflow[i]);
+			file.read (buffer, sizeof (record));
+			temp = (record *) buffer;
+			if (temp->key == key)
+				return *temp;
+		}	
+	}
 	else {
 		record *bad_record = new record;
 		init_record (bad_record, -1, "bad record");
@@ -72,19 +78,18 @@ record hash_find_record (int key, bucket *b, const char *filename) {
 void hash_add_record (record *record, map<int, bucket> *hash_table, int bucket_size, const char *filename) {
 	int index = hash_function (record->key, bucket_size);
 	bucket b = find_bucket (index, hash_table);
-	if (!b.is_null) {
-		while (b.count >= b.bucket_size)
-	       		b = *(b.overflow);
-	}
-	int position = hash_write_record (record, filename); 		//complete
+
+	int position = hash_write_record (record, filename);
 	if (b.is_null) {
 		init_bucket (&b, BUCKET_SIZE, 0);
 	}
-	b.position[b.count] = position;
-	b.count++;
-	if (b.count >= b.bucket_size) {
-		b.overflow = new bucket;
-		init_bucket (b.overflow, b.bucket_size, 0);
+	if (b.count >= 6) {
+		b.overflow[b.overflow_count] = position;
+		b.overflow_count++;
+	}
+	else {
+		b.position[b.count] = position;
+		b.count++;
 	}
 	map<int, bucket>::iterator it;
 	it = hash_table->find (index);
@@ -140,4 +145,22 @@ vector<record> hash_get_all_records (const char *data_filename) {
 		file.read (buffer, sizeof (record));
 	}
 	return all_records;
+}
+
+vector<record> hash_range_search (int s, int e, const char *data_filename) {
+	ifstream file;
+        file.open (data_filename, ios::binary);
+        char buffer[sizeof (record)];
+        record *temp;
+        vector<record> records;
+
+        file.seekg (sizeof(int));
+        file.read (buffer, sizeof (record));
+        while (!file.eof ()) {
+                temp = (record *) buffer;
+		if (temp->key > s && temp->key < e)
+                	records.push_back (*temp);
+                file.read (buffer, sizeof (record));
+        }
+        return records;
 }

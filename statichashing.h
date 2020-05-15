@@ -1,6 +1,8 @@
 #ifndef BD2_PROYECTO_1_STATICHASHING_H
 #define BD2_PROYECTO_1_STATICHASHING_H
+
 #define BUCKET_SIZE 6
+
 
 #include <iostream>
 #include <map>
@@ -15,7 +17,8 @@ struct bucket {
         int position [BUCKET_SIZE];
         int bucket_size;
         int count;
-        bucket *overflow;
+        int overflow[1024];
+	int overflow_count;
 };
 
 void print_hash_table (map<int, bucket> *);
@@ -25,6 +28,7 @@ record hash_search_record (int, map<int, bucket> *, int, const char *);
 void hash_store_index (const char *, map<int, bucket> *);
 void init_bucket (bucket *, int, int);
 vector<record> hash_get_all_records (const char *);
+vector<record> hash_range_search (int, int, const char *);
 
 class hash_file {
 private:
@@ -66,7 +70,6 @@ public:
                 			b.position[i] = 0;
         			b.count = 0;
         			b.bucket_size = BUCKET_SIZE;
-        			b.overflow = nullptr;
 				hash_table.insert (pair<int, bucket> (i, b));
 			}
 		}
@@ -86,6 +89,10 @@ public:
 
 	vector<record> get_all_records () {
 		return hash_get_all_records (data_filename);
+	}
+
+	vector<record> range_search (int s, int e) {
+		return hash_range_search (s, e, data_filename);
 	}
 
 	~hash_file () {

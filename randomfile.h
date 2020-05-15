@@ -20,6 +20,7 @@ list<Pair> random_add_record (record *, const char *, list<Pair>);
 void random_store_index (const char *, list<Pair>);
 vector<record> random_get_all_records (const char *);
 void print_dictionary (list<Pair> *);
+vector<record> random_range_search (int, int, const char *);
 
 class random_file {
 private:
@@ -59,6 +60,10 @@ public:
 
 	vector<record> get_all_records () {
 		return random_get_all_records (data_filename);
+	}
+
+	vector<record> random_search_range (int s, int e) {
+		return random_range_search (s, e, data_filename);
 	}
 
 	~random_file () {

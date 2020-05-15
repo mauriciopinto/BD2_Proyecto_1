@@ -4,6 +4,7 @@
 //#include <QApplication>
 #include "transactions.h"
 #include "parser.h"
+#include <chrono>
 using namespace std;
 
 
@@ -14,14 +15,18 @@ int main(int argc, char *argv[]){
     w.show();
     x.show();
     return a.exec();*/
-    //string prueba="Select * from Test where key = 2";
-    //string prueba="Create Test Index random";
-    //string prueba="Insert Into Test ( 1 , Jonathan )";
-    //vector<string> test=read(prueba);
-    //printvector(test);
-    //determinefunction(test);
-	const char *filename1 = "transaction1.txt";
-	const char *filename2 = "transaction2.txt";
+    auto start = chrono::steady_clock::now ();
+    string prueba="Select * from Hash where key = 37";
+    //string prueba="Create Hash Index Hash";
+    //string prueba="Insert Into Hash ( 37 , roxel )";
+    vector<string> test=read(prueba);
+    printvector(test);
+    determinefunction(test);
+    auto end = chrono::steady_clock::now ();
+
+    cout << chrono::duration_cast<chrono::nanoseconds>(end - start).count () << "ns" << endl;
+	//const char *filename1 = "transaction1.txt";
+	//const char *filename2 = "transaction2.txt";
 	
 	/*transaction *t1, *t2, *t3, *t4, *t5;
 	t1 = new transaction;
@@ -56,7 +61,7 @@ int main(int argc, char *argv[]){
 	vector<vector<transaction>> all;
 	all.push_back (T1);
 	all.push_back (T2);*/
-	parse_transactions (filename1, filename2, 0);
+	//parse_transactions (filename1, filename2, 0);
 	//hash_file h ("test.bin", "test_index.bin", 6, 6);
 	/*h.add_record (r1);
 	h.add_record (r2);

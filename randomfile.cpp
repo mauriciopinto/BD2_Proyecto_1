@@ -135,3 +135,22 @@ void print_dictionary (list<Pair> *dictionary) {
 	for (it = dictionary->begin (); it != dictionary->end (); it++) 
 		cout << it->key << " " << it->position << endl;
 }
+
+vector<record> random_range_search (int s, int e, const char *data_filename) {
+        ifstream file;
+        file.open (data_filename, ios::binary);
+        char buffer[sizeof (record)];
+        record *temp;
+        vector<record> records;
+
+        file.seekg (sizeof(int));
+        file.read (buffer, sizeof (record));
+        while (!file.eof ()) {
+                temp = (record *) buffer;
+                if (temp->key > s && temp->key < e)
+                        records.push_back (*temp);
+                file.read (buffer, sizeof (record));
+        }
+        return records;
+}
+
