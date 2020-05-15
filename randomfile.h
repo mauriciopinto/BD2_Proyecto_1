@@ -19,6 +19,7 @@ record random_search_record (int, const char *, list<Pair>);
 list<Pair> random_add_record (record *, const char *, list<Pair>);
 void random_store_index (const char *, list<Pair>);
 vector<record> random_get_all_records (const char *);
+void print_dictionary (list<Pair> *);
 
 class random_file {
 private:

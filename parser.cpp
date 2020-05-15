@@ -131,7 +131,7 @@ void determinefunction(vector<string> function){
     //Generar el ingreso de columnas
     else if(function[0] == "CREATE"){
         cout<<"Esta funcion es para crear una tabla."<<endl;
-        if(checkfileexist(function[1])) {
+        if(!checkfileexist(function[1])) {
             ofstream file;
             file.open(function[1] + ".bin", ios::binary | ios::app);
             int choice;

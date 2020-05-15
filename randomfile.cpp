@@ -14,7 +14,7 @@ record random_read_record (const char *data_filename, int position) {
 	char buffer[sizeof (record)];
 
 	file.open (data_filename, ios::binary);
-	file.seekg ((position * sizeof (record)) + sizeof (int));
+	file.seekg ((position));
 	file.read (buffer, sizeof (record));
 
 	file.close ();
@@ -46,8 +46,8 @@ list<Pair> sort_dictionary (list<Pair> dictionary) {
 record random_search_record (int key, const char *data_filename, list<Pair> dictionary) {
 	list<Pair>::iterator it;
         int n = dictionary.size () - 1;
-        if ((n+1) % 2 == 0) {
-		n = (n+1)/2 -1;
+        if ((n+1) % 2 == 0 && n + 1 > 32) {
+		n = (n+1)/2;
         	it = dictionary.begin ();
                 advance (it, n);
                 while (true) {
@@ -80,6 +80,10 @@ record random_search_record (int key, const char *data_filename, list<Pair> dict
 }
 
 list<Pair> random_add_record (record *r, const char *data_filename, list<Pair> dictionary) {
+	ifstream i;
+	i.open (data_filename, ios::ate);
+	int pos = i.tellg ();
+	
 	ofstream file;
         file.open (data_filename, ios::binary | ios::app);
         
@@ -88,7 +92,7 @@ list<Pair> random_add_record (record *r, const char *data_filename, list<Pair> d
 	file.close ();
 
 	Pair *p1 = new Pair;
-       	init_pair (p1, r->key, dictionary.size ());
+       	init_pair (p1, r->key, pos);
         
 	dictionary.push_back (*p1);
        	dictionary = sort_dictionary (dictionary);
@@ -124,4 +128,10 @@ vector<record> random_get_all_records (const char *data_filename) {
                 file.read (buffer, sizeof (record));
         }
         return all_records;
+}
+
+void print_dictionary (list<Pair> *dictionary) {
+	list<Pair>::iterator it;
+	for (it = dictionary->begin (); it != dictionary->end (); it++) 
+		cout << it->key << " " << it->position << endl;
 }
