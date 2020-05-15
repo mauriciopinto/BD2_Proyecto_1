@@ -16,9 +16,9 @@ int main(int argc, char *argv[]){
     x.show();
     return a.exec();*/
     auto start = chrono::steady_clock::now ();
-    string prueba="Select * from Hash where key = 37";
-    //string prueba="Create Hash Index Hash";
-    //string prueba="Insert Into Hash ( 37 , roxel )";
+    string prueba="Select * from Hash where key = 1";
+    //string prueba="Create test Index Random";
+    //string prueba="Insert Into test ( 50 , roxel )";
     vector<string> test=read(prueba);
     printvector(test);
     determinefunction(test);

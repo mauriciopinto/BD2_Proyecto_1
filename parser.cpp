@@ -89,7 +89,6 @@ void determinefunction(vector<string> function){
 				cout << all[i].key << " " << all[i].value << endl;
 			return; 
 		}
-
             }
             else{
                 cout<<"Select Hash"<<endl;

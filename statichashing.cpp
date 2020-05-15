@@ -13,6 +13,7 @@ void init_bucket (bucket *b, int bucket_size, int count) {
 	b->is_null = false;
 }
 
+/* Escribe un registro y retorna su posicion */
 int hash_write_record (record *r, const char *filename) {
 	ifstream i;
 	i.open (filename, ios::ate);
@@ -32,10 +33,12 @@ int hash_write_record (record *r, const char *filename) {
 	return ret;
 }
 
+/*Funcion hash. Retorna el modulo de key entre bucket_size.*/
 int hash_function (int key, int bucket_size) {
 	return key % bucket_size;
 }
 
+/* Busca y retorna el bucket correspondiente a un indice */
 bucket find_bucket (int index, map<int, bucket> *hash_table) {
 	map<int, bucket>::iterator it;
 	for (it = hash_table->begin (); it != hash_table->end (); it++) {
@@ -45,6 +48,7 @@ bucket find_bucket (int index, map<int, bucket> *hash_table) {
 	}
 }
 
+/* Busca un registro dentro de un bucket. */
 record hash_find_record (int key, bucket *b, const char *filename) {
 	ifstream file;
 	file.open (filename, ios::binary);
@@ -104,20 +108,13 @@ record hash_search_record (int key, map<int, bucket> *hash_table, int bucket_siz
 	return hash_find_record (key, &b, filename);
 }
 
+/* Escribe el indice en memoria. */
 void hash_store_index (const char *hash_table_filename, map<int, bucket> *hash_table) {
 	map<int, bucket>::iterator it;
 	ofstream file;
 	file.open (hash_table_filename, ios::binary);
 	file.seekp (0);
 	for (it = hash_table->begin (); it != hash_table->end (); it++) {
-		/*int first = it->first;
-		bucket *second = it->second;
-		if (!second) {
-			second = new bucket;
-			second->is_null = true;
-		}
-		file.write ((char *) &first, sizeof (int));
-		file.write ((char *) second, sizeof (bucket));*/
 		file.write ((char *) &(*it), sizeof (pair<int, bucket>));
 		file.flush ();
 	}
@@ -130,6 +127,7 @@ void print_hash_table (map<int, bucket > *hash_table) {
 		cout << it->first << " " << it->second.position[0] << " " << it->second.count << endl;
 }
 
+/* Retorna todos los registros del archivo de datos */
 vector<record> hash_get_all_records (const char *data_filename) {
 	ifstream file;
 	file.open (data_filename, ios::binary);
@@ -147,6 +145,8 @@ vector<record> hash_get_all_records (const char *data_filename) {
 	return all_records;
 }
 
+/* Realiza una busqueda por rango. Ya que la data no esta ordenada, se lee secuencialmente
+ * los registros. */
 vector<record> hash_range_search (int s, int e, const char *data_filename) {
 	ifstream file;
         file.open (data_filename, ios::binary);

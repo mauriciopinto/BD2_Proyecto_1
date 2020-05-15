@@ -8,6 +8,7 @@ void init_pair (Pair *p, int key, int position) {
 	p->position = position;
 }
 
+/* Lee un registro en la posicion dada y lo retorna */
 record random_read_record (const char *data_filename, int position) {
 	ifstream file;
 	record *temp;
@@ -21,6 +22,7 @@ record random_read_record (const char *data_filename, int position) {
 	return *((record *) buffer);
 }
 
+/* Ordena el indice */
 list<Pair> sort_dictionary (list<Pair> dictionary) {
 	if (dictionary.size () == 1)
                 return dictionary;
@@ -43,6 +45,9 @@ list<Pair> sort_dictionary (list<Pair> dictionary) {
         return new_dict;
 }
 
+/* Hace una busqueda por el indice para encontrar el registro con llave KEY. Para valores pequeños
+ * de tamaño realiza una busqueda secuencial, y cuando es conveniente para valores mayores realiza 
+ * una busqueda binaria.*/
 record random_search_record (int key, const char *data_filename, list<Pair> dictionary) {
 	list<Pair>::iterator it;
         int n = dictionary.size () - 1;
@@ -79,6 +84,7 @@ record random_search_record (int key, const char *data_filename, list<Pair> dict
         return *bad_record;
 }
 
+/* Agrega un registro al final del archivo de datos y guarda su posicion en el indice */
 list<Pair> random_add_record (record *r, const char *data_filename, list<Pair> dictionary) {
 	ifstream i;
 	i.open (data_filename, ios::ate);
@@ -99,6 +105,7 @@ list<Pair> random_add_record (record *r, const char *data_filename, list<Pair> d
 	return dictionary;
 }
 
+/* Escribe el indice en memoria secundaria */
 void random_store_index (const char *index_filename, list<Pair> dictionary) {
 	ofstream index;
         index.open (index_filename, ios::binary);
@@ -113,6 +120,7 @@ void random_store_index (const char *index_filename, list<Pair> dictionary) {
 	index.close ();
 }
 
+/* Lee todos los registros secuencialmente y los retorna */
 vector<record> random_get_all_records (const char *data_filename) {
         ifstream file;
         file.open (data_filename, ios::binary);
