@@ -1,3 +1,0 @@
-insert into test ( 1 , mauricio )
-select * from test where key = 1
-select * from test where key = 2
