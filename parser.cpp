@@ -70,6 +70,9 @@ void determinefunction(vector<string> function){
 			record a=temp.search_record(stoi(function[7]));
 			if(function[1]=="*"){
                			cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
+               			string temp="La key: "+to_string(a.key)+", tiene un value de: "+a.value+".";
+               			MainWindow temp2;
+               			temp2.printmessage(temp);
 
                			ofstream fileoutput;
                         fileoutput.open("outputcsv.csv", ios::trunc);
@@ -135,7 +138,7 @@ void determinefunction(vector<string> function){
 
                 	}
                 	else{
-        			cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
+        			    cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
 	        	}
 
 		}
@@ -179,6 +182,8 @@ void determinefunction(vector<string> function){
 
                 	if(function[1]=="*"){
                     		cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
+                            string temp="La key: "+to_string(a.key)+", tiene un value de: "+a.value+".";
+
 
                     		ofstream fileoutput;
                     		fileoutput.open("outputcsv.csv", ios::trunc);

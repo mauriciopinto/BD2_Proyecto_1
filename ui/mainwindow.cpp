@@ -31,7 +31,15 @@ void MainWindow::on_pushButton_clicked()
        QFile file( "/Users/jonathanprieto/Documents/GitHub/BD2_Proyecto_1/cmake-build-debug/outputcsv.csv");
        QStringList listA;
        int row = 0;
+
        if (file.open(QIODevice::ReadOnly)){
+           ui->tableWidget->removeColumn(1);
+           ui->tableWidget->removeColumn(0);
+           qDebug()<<ui->tableWidget->rowCount();
+           for (int i = 0; i <= ui->tableWidget->rowCount(); i++) {
+               ui->tableWidget->removeRow(i);
+           }
+
            while (!file.atEnd()){
            QString line = file.readLine();
            listA = line.split(",");
@@ -52,4 +60,9 @@ void MainWindow::on_pushButton_clicked()
        ui->logg->insertHtml("load table");
        file.close();
 
+}
+
+void MainWindow::printmessage(string mensaje) {
+    QString str=QString::fromStdString(mensaje);
+    ui->logg->insertHtml(str);
 }

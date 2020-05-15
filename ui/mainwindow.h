@@ -1,7 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "iostream"
 #include <QMainWindow>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,6 +19,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void printmessage(string mensaje);
 
 
 private:
