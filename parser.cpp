@@ -28,6 +28,18 @@ bool checkindex(const string& tablename){
     }
     else{
         cout<<"El tipo de indice no es reconocible!"<<endl;
+        string temp="El tipo de indice no es reconocible!";
+
+        ofstream filelog;
+        filelog.open("logfile.txt", ios::trunc);
+        filelog.flush();
+        filelog.close();
+        filelog.open("logfile.txt", ios::app);
+
+        filelog<<(temp);
+
+        filelog.flush();
+        filelog.close();
     }
 }
 
@@ -57,7 +69,6 @@ vector<string> read(string input){
 
 void determinefunction(vector<string> function){
 
-    //Crear una funcion de busqueda por rango que guarde elementos en vector
     //Select * from tabla1 where key = 1
     if(function[0] == "SELECT"){
         cout<<"Esta funcion es un Select."<<endl;
@@ -69,7 +80,7 @@ void determinefunction(vector<string> function){
 			record a=temp.search_record(stoi(function[7]));
 			if(function[1]=="*"){
                			cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
-               			string temp="La key: "+to_string(a.key)+", tiene un value de: "+a.value+".";
+               			string temp="Se realizo la busqueda con Random.";
 
                			ofstream filelog;
                			filelog.open("logfile.txt", ios::trunc);
@@ -81,11 +92,6 @@ void determinefunction(vector<string> function){
 
                			filelog.flush();
                			filelog.close();
-
-                        //MainWindow a1,b1;
-                        //QObject::connect(&a1, &MainWindow::printmessage, &b1, &MainWindow::setValue);
-                        //a1.setValue(temp);
-                        //b1.setValue(temp);
 
                			ofstream fileoutput;
                         fileoutput.open("outputcsv.csv", ios::trunc);
@@ -108,7 +114,20 @@ void determinefunction(vector<string> function){
 
                 	}
                 	else if(function[1]=="KEY"){
-                    		cout<<function[1]<<": "<<a.key<<endl;
+
+                	        cout<<function[1]<<": "<<a.key<<endl;
+                            string temp="Se realizo la busqueda con Random.";
+
+                            ofstream filelog;
+                            filelog.open("logfile.txt", ios::trunc);
+                            filelog.flush();
+                            filelog.close();
+                            filelog.open("logfile.txt", ios::app);
+
+                            filelog<<(temp);
+
+                            filelog.flush();
+                            filelog.close();
 
                             ofstream fileoutput;
                             fileoutput.open("outputcsv.csv", ios::trunc);
@@ -131,6 +150,18 @@ void determinefunction(vector<string> function){
 
                 	else if(function[1]=="VALUE"){
                     		cout<<function[1]<<": "<<a.value<<endl;
+                            string temp="Se realizo la busqueda con Random.";
+
+                            ofstream filelog;
+                            filelog.open("logfile.txt", ios::trunc);
+                            filelog.flush();
+                            filelog.close();
+                            filelog.open("logfile.txt", ios::app);
+
+                            filelog<<(temp);
+
+                            filelog.flush();
+                            filelog.close();
 
                             ofstream fileoutput;
                             fileoutput.open("outputcsv.csv", ios::trunc);
@@ -152,11 +183,36 @@ void determinefunction(vector<string> function){
                 	}
                 	else{
         			    cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
-	        	}
+                        string temp="La columna que ingreso no existe en la estructura de la Base de Datos.";
+
+                        ofstream filelog;
+                        filelog.open("logfile.txt", ios::trunc);
+                        filelog.flush();
+                        filelog.close();
+                        filelog.open("logfile.txt", ios::app);
+
+                        filelog<<(temp);
+
+                        filelog.flush();
+                        filelog.close();
+	        	        }
 
 		}
 		else if (function.size () == 4) {
 			cout << "Selecting all records" << endl;
+			string temp2="Se realizo la busqueda con Random.";
+
+			ofstream filelog;
+			filelog.open("logfile.txt", ios::trunc);
+			filelog.flush();
+			filelog.close();
+			filelog.open("logfile.txt", ios::app);
+
+			filelog<<(temp2);
+
+			filelog.flush();
+			filelog.close();
+
 			vector<record> all= temp.get_all_records ();
 
 			ofstream fileoutput;
@@ -195,9 +251,22 @@ void determinefunction(vector<string> function){
 
                 	if(function[1]=="*"){
                     		cout<<"La key: "<<a.key<<", tiene un value de: "<<a.value<<endl;
-                            string temp="La key: "+to_string(a.key)+", tiene un value de: "+a.value+".";
 
-                            ofstream fileoutput;
+                            string temp="Se realizo la busqueda con Hash Estatico.";
+
+                            ofstream filelog;
+                            filelog.open("logfile.txt", ios::trunc);
+                            filelog.flush();
+                            filelog.close();
+                            filelog.open("logfile.txt", ios::app);
+
+                            filelog<<(temp);
+
+                            filelog.flush();
+                            filelog.close();
+
+
+                        ofstream fileoutput;
                     		fileoutput.open("outputcsv.csv", ios::trunc);
 
                     		fileoutput.flush();
@@ -221,6 +290,18 @@ void determinefunction(vector<string> function){
                 		}
                 	else if(function[1]=="KEY"){
                     		cout<<function[1]<<": "<<a.key<<endl;
+                            string temp="Se realizo la busqueda con Hash Estatico.";
+
+                            ofstream filelog;
+                            filelog.open("logfile.txt", ios::trunc);
+                            filelog.flush();
+                            filelog.close();
+                            filelog.open("logfile.txt", ios::app);
+
+                            filelog<<(temp);
+
+                            filelog.flush();
+                            filelog.close();
 
                             ofstream fileoutput;
                             fileoutput.open("outputcsv.csv", ios::trunc);
@@ -243,6 +324,18 @@ void determinefunction(vector<string> function){
 
                 	else if(function[1]=="VALUE"){
                 		cout<<function[1]<<": "<<a.value<<endl;
+                        string temp="Se realizo la busqueda con Hash Estatico.";
+
+                        ofstream filelog;
+                        filelog.open("logfile.txt", ios::trunc);
+                        filelog.flush();
+                        filelog.close();
+                        filelog.open("logfile.txt", ios::app);
+
+                        filelog<<(temp);
+
+                        filelog.flush();
+                        filelog.close();
 
                         ofstream fileoutput;
                         fileoutput.open("outputcsv.csv", ios::trunc);
@@ -264,11 +357,35 @@ void determinefunction(vector<string> function){
                 	}
                 	else{
                     		cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
+                            string temp="La columna que ingreso no existe en la estructura de la Base de Datos.";
+
+                            ofstream filelog;
+                            filelog.open("logfile.txt", ios::trunc);
+                            filelog.flush();
+                            filelog.close();
+                            filelog.open("logfile.txt", ios::app);
+
+                            filelog<<(temp);
+
+                            filelog.flush();
+                            filelog.close();
                 	}
 
             	}
 		else if (function.size () == 4) {
 			cout << "Selecting all records" << endl;
+                        string temp2="La columna que ingreso no existe en la estructura de la Base de Datos.";
+
+                        ofstream filelog;
+                        filelog.open("logfile.txt", ios::trunc);
+                        filelog.flush();
+                        filelog.close();
+                        filelog.open("logfile.txt", ios::app);
+
+                        filelog<<(temp2);
+
+                        filelog.flush();
+                        filelog.close();
                         vector<record> all= temp.get_all_records ();
 
                         ofstream fileoutput;
@@ -300,6 +417,18 @@ void determinefunction(vector<string> function){
 	}
         else{
             cout<<"No existe la tabla: "<<function[3]<<endl;
+            string temp="No existe la tabla: "+function[3]+".";
+
+            ofstream filelog;
+            filelog.open("logfile.txt", ios::trunc);
+            filelog.flush();
+            filelog.close();
+            filelog.open("logfile.txt", ios::app);
+
+            filelog<<(temp);
+
+            filelog.flush();
+            filelog.close();
         }
 
     }
@@ -325,12 +454,48 @@ void determinefunction(vector<string> function){
                 file.flush();
             } else {
                 cout << "El indice que ingreso no esta disponible en este Gestor!" << endl;
+                string temp="El indice que ingreso no esta disponible en este Gestor!";
+
+                ofstream filelog;
+                filelog.open("logfile.txt", ios::trunc);
+                filelog.flush();
+                filelog.close();
+                filelog.open("logfile.txt", ios::app);
+
+                filelog<<(temp);
+
+                filelog.flush();
+                filelog.close();
             }
             cout << "Se creo la tabla: " << function[1] << "." << endl;
+            string temp="Se creo la tabla: " + function[1] + ".";
+
+            ofstream filelog;
+            filelog.open("logfile.txt", ios::trunc);
+            filelog.flush();
+            filelog.close();
+            filelog.open("logfile.txt", ios::app);
+
+            filelog<<(temp);
+
+            filelog.flush();
+            filelog.close();
             file.close();
         }
         else{
             cout<<"La tabla: "<<function[1]<<", ya existe!"<<endl;
+            string temp="La tabla: "+function[1]+", ya existe!";
+
+            ofstream filelog;
+            filelog.open("logfile.txt", ios::trunc);
+            filelog.flush();
+            filelog.close();
+            filelog.open("logfile.txt", ios::app);
+
+            filelog<<(temp);
+
+            filelog.flush();
+            filelog.close();
         }
     }
 
@@ -353,17 +518,36 @@ void determinefunction(vector<string> function){
             }
         }
         else{
-            cout<<"No existe la tabla: "<<function[2]<<endl;
+            cout<<"No existe la tabla: "<<function[2]<<"."<<endl;
+            string temp="No existe la tabla: "+function[2]+".";
+
+            ofstream filelog;
+            filelog.open("logfile.txt", ios::trunc);
+            filelog.flush();
+            filelog.close();
+            filelog.open("logfile.txt", ios::app);
+
+            filelog<<(temp);
+
+            filelog.flush();
+            filelog.close();
         }
 
     }
 
     else{
         cout<<"Esta función no esta reconocida por es gestor de base de datos."<<endl;
+        string temp="Esta función no esta reconocida por es gestor de base de datos.";
+
+        ofstream filelog;
+        filelog.open("logfile.txt", ios::trunc);
+        filelog.flush();
+        filelog.close();
+        filelog.open("logfile.txt", ios::app);
+
+        filelog<<(temp);
+
+        filelog.flush();
+        filelog.close();
     }
 }
-
-//Hacer un select de toda la tabla
-//Hacer transacciones concurrentes
-//Hacer experimentacion
-//Integrar UI
