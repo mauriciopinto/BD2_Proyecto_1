@@ -5,10 +5,7 @@
 #include <QFile>
 #include <QString>
 #include <QStringList>
-#include <QFileDialog>
 #include <QTableWidget>
-#include <QTableWidgetItem>
-#include <QMessageBox>
 #include <QtDebug>
 
 input::input(QWidget *parent) :
@@ -41,7 +38,7 @@ void input::on_pushButton_clicked()
 
     //string prueba="Create Test2 Index hash";
     //string prueba="Insert Into Test2 ( 2 , Jonathan )";
-    //string prueba="Select * from TEST where key = 1";
+    //string prueba="Select * from TEST1 where key = 1";
     //TRANSACTIONS ARCHIVO1 ARCHIVO2 INDEX
     vector<string> test=read(str.toStdString());
     printvector(test);
@@ -78,6 +75,6 @@ void input::on_pushButton_clicked()
     }
     file.close();
 
-    ui->logg1->insertHtml(datalog.readAll()+"<br>");
+    ui->logg1->insertHtml(datalog.readAll());
     filelog.close();
 }

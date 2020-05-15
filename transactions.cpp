@@ -115,16 +115,11 @@ void parse_transactions (const char *file1, const char *file2, int index) {
 
 void run_operation (transaction input) {
 	cout << "running transaction " << input.t_id << endl;
+
     string temp="running transaction: " + to_string(input.t_id)+"."+"\n";
-
     ofstream filelog;
-    filelog.open("logfile.txt", ios::trunc);
-    filelog.flush();
-    filelog.close();
     filelog.open("logfile.txt", ios::app);
-
     filelog<<(temp);
-
     filelog.flush();
     filelog.close();
 
@@ -132,16 +127,11 @@ void run_operation (transaction input) {
                 hash_file h_file (input.data_filename, input.index_filename, input.bucket_size, input.n_buckets);
                 if (input.op == R) {
 			cout << "reading" << endl;
+
 			string temp="Reading\n";
-
 			ofstream filelog;
-			filelog.open("logfile.txt", ios::trunc);
-			filelog.flush();
-			filelog.close();
 			filelog.open("logfile.txt", ios::app);
-
 			filelog<<(temp);
-
 			filelog.flush();
 			filelog.close();
 
@@ -151,16 +141,11 @@ void run_operation (transaction input) {
                 else {
 			resource.lock ();
 			cout << "writing" << endl;
+
 			string temp="Writing\n";
-
 			ofstream filelog;
-			filelog.open("logfile.txt", ios::trunc);
-			filelog.flush();
-			filelog.close();
 			filelog.open("logfile.txt", ios::app);
-
 			filelog<<(temp);
-
 			filelog.flush();
 			filelog.close();
 
