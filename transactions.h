@@ -12,6 +12,8 @@ using namespace std;
 
 enum operation { R, W };
 
+/*Estructura que define una transaccion. Contiene informacion para saber
+ * que se ejecutara y sobre que recursos*/
 struct transaction {
 	int t_id;
 	int index;

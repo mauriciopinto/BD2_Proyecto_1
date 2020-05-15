@@ -245,7 +245,6 @@ void determinefunction(vector<string> function){
 
 			return; 
 		}
-
             }
             else{
                 cout<<"Select Hash"<<endl;

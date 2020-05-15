@@ -9,6 +9,7 @@
 
 using namespace std;
 
+/* Estructura que define el par que sera ingresado al indice. */
 struct Pair {
         int key;
         int position;
@@ -20,13 +21,16 @@ list<Pair> random_add_record (record *, const char *, list<Pair>);
 void random_store_index (const char *, list<Pair>);
 vector<record> random_get_all_records (const char *);
 void print_dictionary (list<Pair> *);
+vector<record> random_range_search (int, int, const char *);
 
+/* Objeto que maneja el random file. Puede agregar y buscar registros. */
 class random_file {
 private:
 	const char *data_filename;
 	const char *index_filename;
 	list<Pair> dictionary;
 public:
+	/* Constructor del objeto. Si existe un archivo con el indice, lo lee */
 	random_file (const char *data_filename, const char *index_filename) : data_filename (data_filename),
 										 index_filename (index_filename) {
 		ifstream index;
@@ -59,6 +63,10 @@ public:
 
 	vector<record> get_all_records () {
 		return random_get_all_records (data_filename);
+	}
+
+	vector<record> random_search_range (int s, int e) {
+		return random_range_search (s, e, data_filename);
 	}
 
 	~random_file () {
