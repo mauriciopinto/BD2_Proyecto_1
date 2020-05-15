@@ -183,26 +183,28 @@ void determinefunction(vector<string> function){
                             fileoutput.close();
 
                 	}
-                	else{
-        			    cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
-                        string temp="La columna que ingreso no existe en la estructura de la Base de Datos.<br>\n";
+                	else {
+                if (function.size() != 4) {
+                    cout << "La columna que ingreso no existe en la estructura de la Base de Datos." << endl;
+                    string temp = "La columna que ingreso no existe en la estructura de la Base de Datos.<br>\n";
 
-                        ofstream filelog;
-                        filelog.open("logfile.txt", ios::trunc);
-                        filelog.flush();
-                        filelog.close();
-                        filelog.open("logfile.txt", ios::app);
+                    ofstream filelog;
+                    filelog.open("logfile.txt", ios::trunc);
+                    filelog.flush();
+                    filelog.close();
+                    filelog.open("logfile.txt", ios::app);
 
-                        filelog<<(temp);
+                    filelog << (temp);
 
-                        filelog.flush();
-                        filelog.close();
-	        	        }
+                    filelog.flush();
+                    filelog.close();
+                }
+            }
 
 		}
 		else if (function.size () == 4) {
 			cout << "Selecting all records" << endl;
-			string temp2="Se realizo la busqueda con Random.";
+			string temp2="Se realizo la busqueda con Random.<br>\n";
 
 			ofstream filelog;
 			filelog.open("logfile.txt", ios::trunc);
@@ -357,9 +359,10 @@ void determinefunction(vector<string> function){
                         fileoutput.close();
 
                 	}
-                	else{
-                    		cout<<"La columna que ingreso no existe en la estructura de la Base de Datos."<<endl;
-                            string temp="La columna que ingreso no existe en la estructura de la Base de Datos.<br>\n";
+                	else {
+                        if (function.size() != 4) {
+                            cout << "La columna que ingreso no existe en la estructura de la Base de Datos." << endl;
+                            string temp = "La columna que ingreso no existe en la estructura de la Base de Datos.<br>\n";
 
                             ofstream filelog;
                             filelog.open("logfile.txt", ios::trunc);
@@ -367,16 +370,17 @@ void determinefunction(vector<string> function){
                             filelog.close();
                             filelog.open("logfile.txt", ios::app);
 
-                            filelog<<(temp);
+                            filelog << (temp);
 
                             filelog.flush();
                             filelog.close();
-                	}
+                        }
+                    }
 
             	}
 		else if (function.size () == 4) {
 			cout << "Selecting all records" << endl;
-                        string temp2="La columna que ingreso no existe en la estructura de la Base de Datos.";
+                        string temp2="Se realizo la busqueda con Hash Estatico.<br>\n";
 
                         ofstream filelog;
                         filelog.open("logfile.txt", ios::trunc);

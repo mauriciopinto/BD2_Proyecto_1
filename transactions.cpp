@@ -116,7 +116,7 @@ void parse_transactions (const char *file1, const char *file2, int index) {
 void run_operation (transaction input) {
 	cout << "running transaction " << input.t_id << endl;
 
-    string temp="running transaction: " + to_string(input.t_id)+"."+"\n";
+    string temp="running transaction: " + to_string(input.t_id)+"."+"<br>\n";
     ofstream filelog;
     filelog.open("logfile.txt", ios::app);
     filelog<<(temp);
@@ -128,7 +128,7 @@ void run_operation (transaction input) {
                 if (input.op == R) {
 			cout << "reading" << endl;
 
-			string temp="Reading\n";
+			string temp="Reading<br>\n";
 			ofstream filelog;
 			filelog.open("logfile.txt", ios::app);
 			filelog<<(temp);
@@ -142,7 +142,7 @@ void run_operation (transaction input) {
 			resource.lock ();
 			cout << "writing" << endl;
 
-			string temp="Writing\n";
+			string temp="Writing<br>\n";
 			ofstream filelog;
 			filelog.open("logfile.txt", ios::app);
 			filelog<<(temp);
