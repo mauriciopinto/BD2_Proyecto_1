@@ -245,6 +245,47 @@ void determinefunction(vector<string> function){
 
 			return; 
 		}
+                else if (function.size () == 12) {
+                    cout << "Range Based Selection" << endl;
+                    string temp2="Se realizo la busqueda con Random.<br>\n";
+
+                    ofstream filelog;
+                    filelog.open("logfile.txt", ios::trunc);
+                    filelog.flush();
+                    filelog.close();
+                    filelog.open("logfile.txt", ios::app);
+
+                    filelog<<(temp2);
+
+                    filelog.flush();
+                    filelog.close();
+                    vector<record> all= temp.random_search_range(stoi(function[7]),stoi(function[11]));
+
+                    ofstream fileoutput;
+                    fileoutput.open("outputcsv.csv", ios::trunc);
+
+                    fileoutput.flush();
+                    fileoutput.close();
+
+                    fileoutput.open("outputcsv.csv", ios::app);
+
+                    fileoutput<<("Key:");
+                    fileoutput<<(",");
+                    fileoutput<<("Value:");
+                    fileoutput<<("\n");
+
+                    for (int i = 0; i < all.size (); i++){
+                        cout << all[i].key << " " << all[i].value << endl;
+                        fileoutput<<(all[i].key);
+                        fileoutput<<(",");
+                        fileoutput<<((char *) &all[i].value);
+                        fileoutput<<("\n");
+                    }
+
+                    fileoutput.flush();
+                    fileoutput.close();
+                    return;
+                }
             }
             else{
                 cout<<"Select Hash"<<endl;
@@ -418,6 +459,48 @@ void determinefunction(vector<string> function){
                         fileoutput.close();
                         return;
 	    	}
+
+                else if (function.size () == 12) {
+                    cout << "Range Based Selection" << endl;
+                    string temp2="Se realizo la busqueda con Hash Estatico.<br>\n";
+
+                    ofstream filelog;
+                    filelog.open("logfile.txt", ios::trunc);
+                    filelog.flush();
+                    filelog.close();
+                    filelog.open("logfile.txt", ios::app);
+
+                    filelog<<(temp2);
+
+                    filelog.flush();
+                    filelog.close();
+                    vector<record> all= temp.range_search(stoi(function[7]),stoi(function[11]));
+
+                    ofstream fileoutput;
+                    fileoutput.open("outputcsv.csv", ios::trunc);
+
+                    fileoutput.flush();
+                    fileoutput.close();
+
+                    fileoutput.open("outputcsv.csv", ios::app);
+
+                    fileoutput<<("Key:");
+                    fileoutput<<(",");
+                    fileoutput<<("Value:");
+                    fileoutput<<("\n");
+
+                    for (int i = 0; i < all.size (); i++){
+                        cout << all[i].key << " " << all[i].value << endl;
+                        fileoutput<<(all[i].key);
+                        fileoutput<<(",");
+                        fileoutput<<((char *) &all[i].value);
+                        fileoutput<<("\n");
+                    }
+
+                    fileoutput.flush();
+                    fileoutput.close();
+                    return;
+                }
             }
 	}
         else{
