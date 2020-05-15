@@ -42,6 +42,7 @@ void input::on_pushButton_clicked()
     //string prueba="Create Test2 Index hash";
     //string prueba="Insert Into Test2 ( 2 , Jonathan )";
     //string prueba="Select * from TEST where key = 1";
+    //TRANSACTIONS ARCHIVO1 ARCHIVO2 INDEX
     vector<string> test=read(str.toStdString());
     printvector(test);
     determinefunction(test);
@@ -77,6 +78,6 @@ void input::on_pushButton_clicked()
     }
     file.close();
 
-    ui->logg1->insertHtml(datalog.readAll());
+    ui->logg1->insertHtml(datalog.readAll()+"<br>");
     filelog.close();
 }
